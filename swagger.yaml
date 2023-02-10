@@ -74,7 +74,7 @@ paths:
                     example: 400
                   message:
                     type: string
-                    example: LOGICALID missing or value is not COMPONENTDETAILS
+                    example: LOGICALID missing or value is not COMPONENTCOMMENT
         '404':
           description: Resource Not Found
           content:
@@ -264,7 +264,7 @@ components:
                   properties:
                     LOGICALID:
                       type: string
-                      example: COMPONENTDETAILS
+                      example: COMPONENTCOMMENT
                     REFERENCEID:
                       type: string
                       example: 9999
