@@ -28,6 +28,12 @@ paths:
   /componentdetails:
     post:
       summary: Component Details
+      parameters:
+        - in: header
+          name: APIKey
+          schema:
+            type: string
+          required: true
       description: Update Component Details
       tags: 
         - Component
@@ -86,6 +92,12 @@ paths:
   /componentcomments:
     post:
       summary: Component Comments
+      parameters:
+        - in: header
+          name: APIKey
+          schema:
+            type: string
+          required: true
       description: Update Component Comments
       tags: 
         - Component
