@@ -166,135 +166,127 @@ components:
      type: object
      description: Component Details Request Body
      properties:
-        COMPONENTDETAILS:
+        sender:
           type: object
           properties:
-            APPLICATIONAREA:
-              type: object
-              properties:
-                SENDER:
-                  type: object
-                  properties:
-                    LOGICALID:
-                      type: string
-                      example: COMPONENTDETAILS
-                    REFERENCEID:
-                      type: string
-                      example: 9999
-                    AUTHORIZATIONID:
-                      type: string
-                    TRACKINGID:
-                      type: string
-                      example: "9999|14789067_SP|SITCOMPONENTDETAILS|2023-01-30T07:02:17.0-05:00"
-                    MODE:
-                      type: string
-                      example: T
-                      description: T for Test mode 
-            DATAAREA:
-              type: object
-              properties:
-                COMPONENT_ID:
-                  type: string
-                  example: 10730076
-                COMPONENT_DSC:
-                  type: string
-                  example: "[06] 1st Row LH 8WP Fabric w/heat - A2"
-                PHASE_NME:
-                  type: string
-                  example: "1st Row DV"
-                PROJECT_NBR:
-                  type: string
-                  example: 12359TE0022502
-                TEST_ENGINEER_NME:
-                  type: string
-                  example: Last Name, First Name
-                PHONE_NBR:
-                  type: string
-                  example: 0
-                DVP_NBR:
-                  type: string
-                  example: 149825
-                JCI_PLANT_NME:
-                  type: string
-                  example: Adient - Plymouth
-                OEM:
-                  type: string
-                  example: Honda
-                PROGRAM_NME:
-                  type: string
-                  example: 2023 Honda T90A Seat
-                VALIDATION_COMPONENT_TYP:
-                  type: string
-                  example: SP
-                FX_TYPE:
-                  type: string
-                  example: NA
-                FX_CHECK_IN_STATUS:
-                  type: string
-                  example: NA
-                FX_CURRENT_LOC:
-                  type: string
-                  example: NA
-                WOC:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      WORK_ORDER_ID:
-                        type: string
-                        example: 10301325
-                      TEST_CLASS_NME:
-                        type: string
-                        example: Material Properties
-                      TEST_SUBCLASS_NME:
-                        type: string
-                        example: Properties
+            logicalId:
+              type: string
+              example: COMPONENTDETAILS
+            referenceId:
+              type: string
+              example: 9999
+            authorizationId:
+              type: string
+            trackingId:
+              type: string
+              example: "9999|14789067_SP|SITCOMPONENTDETAILS|2023-01-30T07:02:17.0-05:00"
+            task:
+              type: string
+            mode:
+              type: string
+              example: T
+              description: T for Test mode 
+        dataArea:
+          type: object
+          properties:
+            componentId:
+              type: string
+              example: 10730076
+            componentDesc:
+              type: string
+              example: "[06] 1st Row LH 8WP Fabric w/heat - A2"
+            phaseName:
+              type: string
+              example: "1st Row DV"
+            projectNbr:
+              type: string
+              example: 12359TE0022502
+            testEngineerNme:
+              type: string
+              example: Last Name, First Name
+            phoneNbr:
+              type: string
+              example: 0
+            dvpNbr:
+              type: string
+              example: 149825
+            adientPlantName:
+              type: string
+              example: Adient - Plymouth
+            oem:
+              type: string
+              example: Honda
+            programName:
+              type: string
+              example: 2023 Honda T90A Seat
+            validationComponentTyp:
+              type: string
+              example: SP
+            fxType:
+              type: string
+              example: NA
+            fxCheckInStatus:
+              type: string
+              example: NA
+            fxCurrentLoc:
+              type: string
+              example: NA
+            woc:
+              type: array
+              items:
+                type: object
+                properties:
+                  workOrderId:
+                    type: string
+                    example: 10301325
+                  testClassName:
+                    type: string
+                    example: Material Properties
+                  testSubclassName:
+                    type: string
+                    example: Properties
     ComponentCommentsRequest:
      type: object
-     description: Component Details Request Body
+     description: Component Comments Request Body
      properties:
-        COMPONENTDETAILS:
+        sender:
           type: object
           properties:
-            APPLICATIONAREA:
+            logicalId:
+              type: string
+              example: COMPONENTCOMMENT
+            referenceId:
+              type: string
+              example: 9999
+            authorizationId:
+              type: string
+            component:
+              type: string
+            trackingId:
+              type: string
+              example: "9999|14789067_SP|SITCOMPONENTDETAILS|2023-01-30T07:02:17.0-05:00"
+            mode:
+              type: string
+              example: T
+              description: T for Test mode 
+            dataArea:
               type: object
               properties:
-                SENDER:
-                  type: object
-                  properties:
-                    LOGICALID:
-                      type: string
-                      example: COMPONENTCOMMENT
-                    REFERENCEID:
-                      type: string
-                      example: 9999
-                    AUTHORIZATIONID:
-                      type: string
-                    TRACKINGID:
-                      type: string
-                      example: "9999|14789067_SP|SITCOMPONENTDETAILS|2023-01-30T07:02:17.0-05:00"
-                    MODE:
-                      type: string
-                      example: T
-                      description: T for Test mode 
-            DATAAREA:
-              type: object
-              properties:
-                COMPONENT_INVENTORY_COMMENT_ID:
+                componentInventoryCommentId:
                   type: string
                   example: 28145
-                COMPONENT_ID:
+                componentId:
                   type: string
                   example: 115805
-                COMPONENT_INVENTORY_CMNT:
+                componentInventoryCmnt:
                   type: string
                   example: "Fixture was requested yesterday but not followed up with an email. Can you please expedite this request? Thank you!!"
-                COMMENT_BY:
+                commentBy:
                   type: string
                   example: aploszs
-                COMMENT_UPDATED_DT:
+                commentUpdatedDt:
                   type: string
                   example: "01/26/2023 03:08:28 PM"
-                VALIDATION_COMPONENT_TYP:
+                validationComponentTyp:
                   type: string
                   example: FX
