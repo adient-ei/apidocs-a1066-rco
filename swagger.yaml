@@ -25,70 +25,6 @@ servers:
           - https
         default: https
 paths:
-  /componentdetails:
-    post:
-      summary: Component Details
-      parameters:
-        - in: header
-          name: APIKey
-          schema:
-            type: string
-          required: true
-      description: Update Component Details
-      tags: 
-        - Component
-      requestBody:
-        description: Component Details Request Body
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ComponentDetailsRequest'
-        required: true
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                description: ''
-                properties:
-                  code:
-                    type: string
-                    example: 401
-                  message:
-                    type: string
-                    example: Invalid Authorization key for resource
-        '400':
-          description: Bad data
-          content:
-            application/json:
-              schema:
-                type: object
-                description: ''
-                properties:
-                  code:
-                    type: string
-                    example: 400
-                  message:
-                    type: string
-                    example: LOGICALID missing or value is not COMPONENTCOMMENT
-        '404':
-          description: Resource Not Found
-          content:
-            application/json:
-              schema:
-                type: object
-                description: ''
-                properties:
-                  code:
-                    type: string
-                    example: 404
-                  message:
-                    type: string
-                    example: Resource Not Found
   /componentcomments:
     post:
       summary: Component Comments
@@ -116,43 +52,13 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                description: ''
-                properties:
-                  code:
-                    type: string
-                    example: 401
-                  message:
-                    type: string
-                    example: Invalid Authorization key for resource
-        '400':
-          description: Bad data
-          content:
-            application/json:
-              schema:
-                type: object
-                description: ''
-                properties:
-                  code:
-                    type: string
-                    example: 400
-                  message:
-                    type: string
-                    example: LOGICALID missing or value is not COMPONENTDETAILS
+                $ref: '#/components/schemas/ErrorInvalidAuthorizationKey'
         '404':
-          description: Resource Not Found
+          description: Not Found
           content:
             application/json:
               schema:
-                type: object
-                description: ''
-                properties:
-                  code:
-                    type: string
-                    example: 404
-                  message:
-                    type: string
-                    example: Resource Not Found
+                $ref: '#/components/schemas/ErrorInvalidResourceOrLogicalId'
 security:
   - ApiKeyAuth: []
 components:
@@ -162,89 +68,6 @@ components:
       name: Authorization
       in: header
   schemas:
-    ComponentDetailsRequest:
-     type: object
-     description: Component Details Request Body
-     properties:
-        sender:
-          type: object
-          properties:
-            logicalId:
-              type: string
-              example: COMPONENTDETAILS
-            referenceId:
-              type: string
-              example: 9999
-            authorizationId:
-              type: string
-            trackingId:
-              type: string
-              example: "9999|14789067_SP|SITCOMPONENTDETAILS|2023-01-30T07:02:17.0-05:00"
-            task:
-              type: string
-            mode:
-              type: string
-              example: T
-              description: T for Test mode 
-        dataArea:
-          type: object
-          properties:
-            componentId:
-              type: string
-              example: 10730076
-            componentDesc:
-              type: string
-              example: "[06] 1st Row LH 8WP Fabric w/heat - A2"
-            phaseName:
-              type: string
-              example: "1st Row DV"
-            projectNbr:
-              type: string
-              example: 12359TE0022502
-            testEngineerNme:
-              type: string
-              example: Last Name, First Name
-            phoneNbr:
-              type: string
-              example: 0
-            dvpNbr:
-              type: string
-              example: 149825
-            adientPlantName:
-              type: string
-              example: Adient - Plymouth
-            oem:
-              type: string
-              example: Honda
-            programName:
-              type: string
-              example: 2023 Honda T90A Seat
-            validationComponentTyp:
-              type: string
-              example: SP
-            fxType:
-              type: string
-              example: NA
-            fxCheckInStatus:
-              type: string
-              example: NA
-            fxCurrentLoc:
-              type: string
-              example: NA
-            woc:
-              type: array
-              items:
-                type: object
-                properties:
-                  workOrderId:
-                    type: string
-                    example: 10301325
-                  testClassName:
-                    type: string
-                    example: Material Properties
-                  testSubclassName:
-                    type: string
-                    example: Properties
     ComponentCommentsRequest:
      type: object
      description: Component Comments Request Body
@@ -290,3 +113,29 @@ components:
                 validationComponentTyp:
                   type: string
                   example: FX
+    ErrorInvalidAuthorizationKey:
+      type: object
+      description: Error Message for Invalid Authorization Key
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: "401"
+            message:
+              type: string
+              example: "Invalid Authorization key for resource"
+    ErrorInvalidResourceOrLogicalId:
+      type: object
+      description: Error Message for Invalid Authorization Key
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: "404"
+            message:
+              type: string
+              example: "Resource Not Found or logicalId is either missing or Invalid"
