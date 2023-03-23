@@ -59,6 +59,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorInvalidResourceOrLogicalId'
+  /suppliertransaction:
+    post:
+      summary: Supplier Trasnaction
+      description: Post Supplier Transaction Data to gSIT / GLIMS DB
+      tags: 
+      - Supplier Transaction
+      requestBody:
+        description: Supplier Transaction
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupplierTransactionRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplierTransactionResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorInvalidAuthorizationKey'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorInvalidResourceOrLogicalId'
 security:
   - ApiKeyAuth: []
 components:
@@ -113,6 +145,78 @@ components:
                 validationComponentTyp:
                   type: string
                   example: FX
+    SupplierTransactionRequest:
+     type: object
+     description: Supplier Transaction Request object
+     properties:
+        sender:
+          type: object
+          description: sender Request object
+          properties:
+              trackingId:
+                type: string
+                example: 9999|6715965_SP|RCOSUPPLIERTRANSACTION|2021-10-27T16:40:00.657-05:00
+              logicalId:
+                type: string
+                example: SUPPLIERTRANSACTION
+              component:
+                type: string
+                example: SUPPLIERTRANSACTION
+              task:
+                type: string
+                example: SUPPLIERTRANSACTION  
+              referenceId:
+                type: string
+                example: 9999
+              authorizationId:
+                type: string
+                example: 
+        dataArea:
+          type: object
+          properties:
+            componentId:
+              type: string
+              example: 10730802
+            validationComponentTyp:
+              type: string
+              example: SP
+            transactionTypeId:
+              type: string
+              example: 1
+            transactionDate:
+              type: string
+              example: 10/27/2021 4:34:43 PM  
+            supplierName:
+              type: string
+              example: RCO 
+            supplierTransactionId:
+              type: string
+              example: 6715965
+            supplierUserName:
+              type: string
+              example: Priestly, Todd
+            currentLocationName:
+              type: string
+              example: RCO - Five Mile 
+            destinationLocationName:
+              type: string
+              example: RCO - Five Mile
+            shipperNbre:
+              type: string
+              example: 
+            storageShelfLocationName:
+              type: string
+              example: X25951
+    SupplierTransactionResponse:
+     type: object
+     title: SupplierTransactionResponse
+     properties:
+       code:
+        type: string
+        example: 200
+       message:
+        type: string
+        example: OK
     ErrorInvalidAuthorizationKey:
       type: object
       description: Error Message for Invalid Authorization Key
